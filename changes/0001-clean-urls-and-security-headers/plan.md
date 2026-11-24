@@ -157,55 +157,55 @@ which admit the versions their lockfiles hold today: `aws-cdk-lib` 2.248.0, 2.27
 
 ### End to end
 
-- [ ] Write `e2e/install.mjs`, run by `"test:e2e": "node e2e/install.mjs"` in `package.json`. It exits non-zero with a
+- [x] Write `e2e/install.mjs`, run by `"test:e2e": "node e2e/install.mjs"` in `package.json`. It exits non-zero with a
   message on the first failed check, and removes its scratch directory in a `finally` (R1, R2):
-    - [ ] Refuse to run when `git status --porcelain` shows a change to a tracked file, since it installs the
+    - [x] Refuse to run when `git status --porcelain` shows a change to a tracked file, since it installs the
       committed `HEAD`, and read that commit with `git rev-parse HEAD`
-    - [ ] Make a scratch directory with `mkdtemp` under the system temporary directory, and write its `package.json`
+    - [x] Make a scratch directory with `mkdtemp` under the system temporary directory, and write its `package.json`
       with the dependencies `aws-cdk-lib` and `constructs` at the exact versions installed in this repository's
       `node_modules`, `@ritenoar/cdk` as `git+file://<repository root>#<commit>`, and `typescript` as a development
       dependency at the version installed here
-    - [ ] Run `npm install` there with no other arguments, and check that `node_modules/@ritenoar/cdk/dist/index.js`,
+    - [x] Run `npm install` there with no other arguments, and check that `node_modules/@ritenoar/cdk/dist/index.js`,
       `dist/index.d.ts` and `edge/clean-urls.js` exist, which shows `prepare` ran
-    - [ ] Check that `npm ls aws-cdk-lib --all --parseable` and `npm ls constructs --all --parseable` each print one
+    - [x] Check that `npm ls aws-cdk-lib --all --parseable` and `npm ls constructs --all --parseable` each print one
       path, the app's own `node_modules/aws-cdk-lib` and `node_modules/constructs`, and that
       `node_modules/@ritenoar/cdk/node_modules` holds neither
-    - [ ] Write `app.ts`, a stack with a `Distribution` on an `HttpOrigin('example.com')` whose default behavior
+    - [x] Write `app.ts`, a stack with a `Distribution` on an `HttpOrigin('example.com')` whose default behavior
       associates `new CleanUrlsFunction(this, 'CleanUrls', { canonicalHost: 'example.com', securityHeaders: true })`
       with `FunctionEventType.VIEWER_REQUEST` and has a `ResponseHeadersPolicy` with `securityHeadersBehavior`, both
       imported with `import { CleanUrlsFunction, securityHeadersBehavior } from '@ritenoar/cdk'`, and a second
       `CleanUrlsFunction` with no props, printing `JSON.stringify` of the stack's template from `app.synth()`
-    - [ ] Compile it with the scratch app's `tsc` under `strict`, run it with `node`, and check that the template
+    - [x] Compile it with the scratch app's `tsc` under `strict`, run it with `node`, and check that the template
       holds two `AWS::CloudFront::Function` resources on `cloudfront-js-2.0`, one `ResponseHeadersPolicy` and a
       distribution whose default behavior has a `viewer-request` function association
-- [ ] Commit, then run `npm run test:e2e` and see it pass (R1, R2)
+- [x] Commit, then run `npm run test:e2e` and see it pass (R1, R2)
 
 ### Documentation
 
-- [ ] Write `README.md` (R7, R8):
-    - [ ] What the package holds: the `CleanUrlsFunction` construct and its rules, the query string kept on both
+- [x] Write `README.md` (R7, R8):
+    - [x] What the package holds: the `CleanUrlsFunction` construct and its rules, the query string kept on both
       redirects, and `securityHeadersBehavior`, with the four header values and why the function's redirects carry
       them themselves
-    - [ ] How a site installs it: `npm install github:norareit/ritenoar-cdk#v0.1.0`, with `aws-cdk-lib` and
+    - [x] How a site installs it: `npm install github:norareit/ritenoar-cdk#v0.1.0`, with `aws-cdk-lib` and
       `constructs` as the site's own dependencies, and how a site moves to a newer tag
-    - [ ] How a stack uses each export, with one example for a site with `securityHeaders: true`, a `canonicalHost`
+    - [x] How a stack uses each export, with one example for a site with `securityHeaders: true`, a `canonicalHost`
       and a response headers policy of `securityHeadersBehavior`, and one for a site with neither, each associating the
       function with `FunctionEventType.VIEWER_REQUEST`
-    - [ ] How a new version is released: a unit sets the new `version` in `package.json`, and once it is merged a
+    - [x] How a new version is released: a unit sets the new `version` in `package.json`, and once it is merged a
       `v<version>` tag is made on the merge commit on `master` and pushed with `git push origin v<version>`. A tag is
       not moved once pushed, and the first release is `v0.1.0`
-    - [ ] How the package is developed: `npm ci`, `npm test`, `npm run test:e2e` and `npm run check-changes`
-- [ ] Under "Specific to this project" in `AGENTS.md`, list the commands: `npm ci` builds the package through
+    - [x] How the package is developed: `npm ci`, `npm test`, `npm run test:e2e` and `npm run check-changes`
+- [x] Under "Specific to this project" in `AGENTS.md`, list the commands: `npm ci` builds the package through
   `prepare`, `npm test` runs the unit tests, `npm run test:e2e` runs the end-to-end install test against the committed
   `HEAD`, and `npm run build` compiles to `dist/` (R6, R1)
 
 ## Verification
 
-- [ ] `npm ci` installs and builds with no error
-- [ ] `npm run build` writes `dist/index.js`, `dist/index.d.ts` and the declarations of both modules
-- [ ] `npm test` passes
-- [ ] `npm run test:e2e` passes on the last commit
-- [ ] `npm run check-changes` passes on the last commit
+- [x] `npm ci` installs and builds with no error
+- [x] `npm run build` writes `dist/index.js`, `dist/index.d.ts` and the declarations of both modules
+- [x] `npm test` passes
+- [x] `npm run test:e2e` passes on the last commit
+- [x] `npm run check-changes` passes on the last commit
 
 ## Commit Points
 
@@ -213,5 +213,5 @@ which admit the versions their lockfiles hold today: `aws-cdk-lib` 2.248.0, 2.27
 - [x] `feature-0001 Make the package`: the tasks of "The package"
 - [x] `feature-0001 Export the security headers`: the tasks of "The security headers"
 - [x] `feature-0001 Add the clean URLs function`: the tasks of "The clean URLs function"
-- [ ] `feature-0001 Test the install end to end`: the tasks of "End to end"
-- [ ] `feature-0001 Document the package`: the tasks of "Documentation"
+- [x] `feature-0001 Test the install end to end`: the tasks of "End to end"
+- [x] `feature-0001 Document the package`: the tasks of "Documentation"

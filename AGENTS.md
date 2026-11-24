@@ -33,3 +33,8 @@ What is specific to this project goes here, under headings of its own: for examp
 code follows, and how its tests are run. Everything that holds for every project is in the files
 .agentrite/instructions.md names already.
 -->
+
+* `npm ci` installs the dependencies and builds the package to `dist/` through `prepare`
+* `npm run build` compiles `src/` to `dist/`
+* `npm test` runs the unit tests
+* `npm run test:e2e` installs the committed `HEAD` into a scratch CDK app and synthesizes a stack, so commit first
