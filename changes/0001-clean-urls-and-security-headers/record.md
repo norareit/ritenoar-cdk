@@ -1,6 +1,6 @@
 ---
 kind: feature
-status: draft
+status: approved
 timestamp: 2026-11-24T12:00:09Z
 ---
 
@@ -16,5 +16,6 @@ timestamp: 2026-11-24T12:00:09Z
 - 2026-11-24T12:20:07Z [Claude Code, anthropic/claude-opus-5-5] as the specifier, recorded in the install decision,
   at the human's request, why the repository is public and why a private Bitbucket one was rejected. The status is
   `draft`
+- 2026-11-24T12:23:38Z [human] approved the spec. The status is `approved`
 
 ## Amendments
