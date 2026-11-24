@@ -38,6 +38,10 @@ makes the package itself and moves the function and the security headers into it
        origin unchanged
     5. A path shorter than a suffix it is compared with, such as `/a` against `.html`, is handled by the rules above
        without error
+    6. Each redirect of rules 1 and 2 keeps the request's query string: its `location` holds the same parameters with
+       the same values, a parameter given more than once and one without a value included. So
+       `/oled.html?mode=smoke` redirects to `/oled?mode=smoke`, and `www.<canonical host>/a?x=1` to
+       `https://<canonical host>/a?x=1`. A request without a query string is redirected to a `location` with no `?`
 4. The package exports the security headers once, as the `ResponseSecurityHeadersBehavior` a site gives its response
    headers policies: `Strict-Transport-Security` with a `max-age` of 31536000 seconds and no `includeSubDomains` or
    `preload`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN` and
@@ -84,6 +88,12 @@ makes the package itself and moves the function and the security headers into it
   script with a `handler` function and no modules, and the sites' tests already load it that way. What the
   construct adds to it, the canonical host and the headers, is declared ahead of that source, as norareit.com does
   for its headers, so that the tested source and the deployed source are the same text
+- **The query string survives every redirect.** Both sites drop it today, so a page that reads it, such as
+  ritenoar.com's coming `/oled?mode=smoke`, loses its parameters when it is asked for by its `.html` path or on the
+  `www.` host. Keeping it on the host redirect as well as on the `.html` one makes the two redirects alike, and the
+  same link works whichever form of the URL it was written in. This is a change from what both sites do, made on
+  purpose, and a site that moves onto the package gains it. Rejected: keeping it on the `.html` redirect alone, which
+  would leave the `www.` form of the same link broken
 - **Only the function and the headers move in this unit.** They are what has drifted and what ritenoar.com is about
   to copy. The rest of the three site stacks is also alike and is listed below as an option, since moving it touches
   every resource of three deployed stacks
@@ -109,7 +119,3 @@ makes the package itself and moves the function and the security headers into it
 2. **The font caching policy.** It would cost one exported policy, or a helper, that repeats the security headers and
    adds a year of `Cache-Control` for files whose URL changes with their content, as both sites now define
    separately. Without it, two sites keep a copy each
-3. **Keeping the query string on a redirect.** It would cost appending the request's query string to the `location`
-   of each redirect, and a test. Without it, as on both sites today, `/page.html?x=1` redirects to `/page` and the
-   query string is lost, which matters for a page that reads it, such as ritenoar.com's coming `/oled?mode=smoke`
-   when it is asked for as `/oled.html?mode=smoke`
