@@ -84,7 +84,7 @@ which admit the versions their lockfiles hold today: `aws-cdk-lib` 2.248.0, 2.27
 
 ### The security headers
 
-- [ ] Write `test/security-headers.test.ts`: `securityHeadersBehavior` equals, as a whole, a
+- [x] Write `test/security-headers.test.ts`: `securityHeadersBehavior` equals, as a whole, a
   `strictTransportSecurity` of `accessControlMaxAge` `Duration.seconds(31536000)` and `override` true with no
   `includeSubdomains` or `preload`, `contentTypeOptions` with `override` true, `frameOptions` of
   `HeadersFrameOption.SAMEORIGIN` with `override` true and `referrerPolicy` of
@@ -93,7 +93,7 @@ which admit the versions their lockfiles hold today: `aws-cdk-lib` 2.248.0, 2.27
   `AccessControlMaxAgeSec` 31536000, `FrameOption` `SAMEORIGIN` and `ReferrerPolicy`
   `strict-origin-when-cross-origin`, each `Override` true, and no `XSSProtection` or `ContentSecurityPolicy`. Run it
   and see it fail (R4)
-- [ ] Write `src/security-headers.ts` with the constants `maxAge` (`Duration.seconds(31536000)`), `frameOption` and
+- [x] Write `src/security-headers.ts` with the constants `maxAge` (`Duration.seconds(31536000)`), `frameOption` and
   `referrerPolicy`, and from them `securityHeadersBehavior` and `securityHeaderValues`, the record
   `strict-transport-security: max-age=31536000`, `x-content-type-options: nosniff`, `x-frame-options: SAMEORIGIN` and
   `referrer-policy: strict-origin-when-cross-origin`, with a comment that the function's redirects take their headers
@@ -211,7 +211,7 @@ which admit the versions their lockfiles hold today: `aws-cdk-lib` 2.248.0, 2.27
 
 - [x] `feature-0001 Plan the clean URLs function and security headers`: this plan and its log entry
 - [x] `feature-0001 Make the package`: the tasks of "The package"
-- [ ] `feature-0001 Export the security headers`: the tasks of "The security headers"
+- [x] `feature-0001 Export the security headers`: the tasks of "The security headers"
 - [ ] `feature-0001 Add the clean URLs function`: the tasks of "The clean URLs function"
 - [ ] `feature-0001 Test the install end to end`: the tasks of "End to end"
 - [ ] `feature-0001 Document the package`: the tasks of "Documentation"
