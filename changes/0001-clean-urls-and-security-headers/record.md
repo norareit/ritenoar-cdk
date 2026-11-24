@@ -17,5 +17,7 @@ timestamp: 2026-11-24T12:00:09Z
   at the human's request, why the repository is public and why a private Bitbucket one was rejected. The status is
   `draft`
 - 2026-11-24T12:23:38Z [human] approved the spec. The status is `approved`
+- 2026-11-24T12:30:54Z [Claude Code, anthropic/claude-opus-5-5] as the planner, wrote the plan. The status is
+  `approved`
 
 ## Amendments
