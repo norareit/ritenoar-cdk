@@ -76,7 +76,13 @@ makes the package itself and moves the function and the security headers into it
 - **Installed from git by a tag, not from a registry.** The repository is public, so `npm install` fetches it
   without credentials, on the host and in the sandbox. A registry would add an npm organization and a token to
   publish with, for a package with one owner and three users. A tag pins each site to a release, and moving a site
-  to a newer one is a change to its `package.json` and lockfile, as for any dependency
+  to a newer one is a change to its `package.json` and lockfile, as for any dependency. Being public costs no
+  security, because nothing in the package is secret: its headers are in every response the sites send and its
+  redirects can be mapped by anyone with `curl`. The risk that matters is a change to what a site installs, and it is
+  the same for a private repository, since it depends on who can push and not on who can read. A site's lockfile
+  records the commit a tag resolved to, so a tag moved later does not change what `npm ci` installs. Rejected: a
+  private Bitbucket repository, which hides nothing an attacker could use and would need a credential in the
+  sandbox, which reaches out over HTTPS only, and in any later CI
 - **The package is TypeScript, compiled when it is installed.** npm runs a git dependency's `prepare` script after
   installing its development dependencies, so the compiled JavaScript and type declarations are made on install and
   are not committed. Rejected: committing the compiled output, which can disagree with the source it was built from;
