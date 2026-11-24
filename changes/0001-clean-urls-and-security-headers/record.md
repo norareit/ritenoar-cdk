@@ -1,6 +1,6 @@
 ---
 kind: feature
-status: in-progress
+status: implemented
 timestamp: 2026-11-24T12:00:09Z
 ---
 
@@ -35,5 +35,7 @@ timestamp: 2026-11-24T12:00:09Z
   Independently ran `npm ci`, `npm run build`, `npm test` (3 suites, 62 tests), `npm run test:e2e` and
   `npm run check-changes`; all passed. Not verified: public GitHub tag installation, a live AWS deployment,
   historical test-first runs and the end-to-end guard with a changed tracked file. The status stays `in-progress`
+- 2026-11-24T13:48:35Z [human] set the unit implemented: every task of the plan is ticked and the review returned no findings. The
+  status is `implemented`
 
 ## Amendments
