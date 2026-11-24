@@ -66,20 +66,20 @@ which admit the versions their lockfiles hold today: `aws-cdk-lib` 2.248.0, 2.27
 
 ### The package
 
-- [ ] Set `package.json` to the name `@ritenoar/cdk` and the version `0.1.0`, with `main` set to `dist/index.js`,
+- [x] Set `package.json` to the name `@ritenoar/cdk` and the version `0.1.0`, with `main` set to `dist/index.js`,
   `types` to `dist/index.d.ts` and `files` to `["dist", "edge"]` (R1, R8)
-- [ ] Add the scripts `"build": "tsc -p tsconfig.build.json"`, `"prepare": "npm run build"` and `"test": "jest"`,
+- [x] Add the scripts `"build": "tsc -p tsconfig.build.json"`, `"prepare": "npm run build"` and `"test": "jest"`,
   keeping `check-changes` (R1, R6)
-- [ ] Add `peerDependencies` of `"aws-cdk-lib": "^2.150.0"` and `"constructs": "^10.0.0"`, and install as development
+- [x] Add `peerDependencies` of `"aws-cdk-lib": "^2.150.0"` and `"constructs": "^10.0.0"`, and install as development
   dependencies `aws-cdk-lib@^2.278.0`, `constructs@^10.8.1`, `typescript@^5`, `jest@^29`, `ts-jest@^29`,
   `@types/jest@^29` and `@types/node`, which updates `package-lock.json`. No `dependencies` are added (R2)
-- [ ] Add the jest configuration to `package.json`: `testEnvironment` `node`, `testMatch`
+- [x] Add the jest configuration to `package.json`: `testEnvironment` `node`, `testMatch`
   `["<rootDir>/test/**/*.test.ts"]` and the `ts-jest` transform with `tsconfig.json` (R6)
-- [ ] Write `tsconfig.json` with `strict`, `target` `ES2020`, `module` `commonjs`, `lib` `["es2020"]`, `types`
+- [x] Write `tsconfig.json` with `strict`, `target` `ES2020`, `module` `commonjs`, `lib` `["es2020"]`, `types`
   `["node", "jest"]`, `noEmit` and `include` `["src", "test"]`, and `tsconfig.build.json` extending it with
   `noEmit` false, `declaration` true, `rootDir` `src`, `outDir` `dist`, `types` `["node"]` and `include` `["src"]` (R1)
-- [ ] Add `dist/` to `.gitignore` (R1)
-- [ ] Write `src/index.ts` with no exports yet, and check that `npm run build` writes `dist/index.js` and
+- [x] Add `dist/` to `.gitignore` (R1)
+- [x] Write `src/index.ts` with no exports yet, and check that `npm run build` writes `dist/index.js` and
   `dist/index.d.ts` (R1)
 
 ### The security headers
@@ -209,8 +209,8 @@ which admit the versions their lockfiles hold today: `aws-cdk-lib` 2.248.0, 2.27
 
 ## Commit Points
 
-- [ ] `feature-0001 Plan the clean URLs function and security headers`: this plan and its log entry
-- [ ] `feature-0001 Make the package`: the tasks of "The package"
+- [x] `feature-0001 Plan the clean URLs function and security headers`: this plan and its log entry
+- [x] `feature-0001 Make the package`: the tasks of "The package"
 - [ ] `feature-0001 Export the security headers`: the tasks of "The security headers"
 - [ ] `feature-0001 Add the clean URLs function`: the tasks of "The clean URLs function"
 - [ ] `feature-0001 Test the install end to end`: the tasks of "End to end"

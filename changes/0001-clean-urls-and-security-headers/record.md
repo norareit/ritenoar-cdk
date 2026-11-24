@@ -1,6 +1,6 @@
 ---
 kind: feature
-status: approved
+status: in-progress
 timestamp: 2026-11-24T12:00:09Z
 ---
 
@@ -19,5 +19,7 @@ timestamp: 2026-11-24T12:00:09Z
 - 2026-11-24T12:23:38Z [human] approved the spec. The status is `approved`
 - 2026-11-24T12:30:54Z [Claude Code, anthropic/claude-opus-5-5] as the planner, wrote the plan. The status is
   `approved`
+- 2026-11-24T12:40:00Z [Claude Code, anthropic/claude-sonnet-5-5] as the implementer, began the work. No review
+  findings exist under `.reviews/` for this unit. The status is `in-progress`
 
 ## Amendments
